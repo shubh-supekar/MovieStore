@@ -1,0 +1,325 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="name">MovieStore</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu = "main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content padding>
+
+  <ion-searchbar [(ngModel)] = "searchTerm" (ionChange) ="searchChanged($event)"></ion-searchbar>
+
+
+
+
+  <ion-item>
+    <ion-label>Select Search Type</ion-label>
+    <ion-select [(ngModel)] = "type" (ionChange) = "searchChanged($event)">
+
+    <ion-select-option value= "">All</ion-select-option>
+    <ion-select-option value= "movie">Movie</ion-select-option>
+    <ion-select-option value= "series">Series</ion-select-option>
+    <ion-select-option value= "episode">Episode</ion-select-option>
+
+    </ion-select>
+  </ion-item>
+  
+<!--
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="chevron-down-circle-outline"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+  
+  
+
+  <ion-segment scrollable = "true" value = "recent" (ionChange) = "segmentChanged($event)">
+    <ion-segment-button value = 'recentmovies'>
+      <ion-label>Recent Movies</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value = "commingsoon">
+      <ion-label>Comming Soon</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value = "webseries">
+      <ion-label>Web Series</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value = "tvshows">
+      <ion-label>Tv Shows</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col size = "3">
+          <ion-badge (click) = "badgesChanged()" value = "action" color = "light" >Action</ion-badge>
+        </ion-col>
+
+        <ion-col size = "3">
+          <ion-badge color = "light">Crime</ion-badge>
+        </ion-col>
+
+        <ion-col size = "3">
+          <ion-badge color = "light">Horror</ion-badge>
+        </ion-col>
+
+        <ion-col size = "3">
+          <ion-badge color = "light">Drama</ion-badge>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+-->
+
+  <ion-slides [options] = "options">
+    <ion-slide>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size = "12" class="poster-col">
+            <img (click) = "goToContent()" class="poster" src ="https://www.heyuguys.com/images/2013/07/The-Wolverine-Poster-+.jpg" alt="">
+          </ion-col>
+
+          <ion-col size = "12">
+            <h1 class="ion-no-margin title">The Wolverine</h1>
+
+            <p class="ion-no-margin rate">
+              <ion-icon name = "star"></ion-icon>8.0
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size = "12" class="poster-col">
+            <img class="poster" src ="https://images-na.ssl-images-amazon.com/images/I/71r1lLZ3MiL._AC_SY606_.jpg" alt="">
+          </ion-col>
+
+          <ion-col size = "12">
+            <h1 class="ion-no-margin title">Warcraft</h1>
+
+            <p class="ion-no-margin rate">
+              <ion-icon name = "star"></ion-icon>8.9
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size = "12" class="poster-col">
+            <img class="poster" src ="https://images-na.ssl-images-amazon.com/images/I/51LNtFacJBL._AC_.jpg" alt="">
+          </ion-col>
+
+          <ion-col size = "12">
+            <h1 class="ion-no-margin title">Avengers Endgame</h1>
+
+            <p class="ion-no-margin rate">
+              <ion-icon name = "star"></ion-icon>8.5
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size = "12" class="poster-col">
+            <img class="poster" src ="https://wallup.net/wp-content/uploads/2018/10/05/771092-tron-action-adventure-sci-fi-futuristic-disney-poster-748x1105.jpg" alt="">
+          </ion-col>
+
+          <ion-col size = "12">
+            <h1 class="ion-no-margin title">Tron</h1>
+
+            <p class="ion-no-margin rate">
+              <ion-icon name = "star"></ion-icon>6.2
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+ 
+  </ion-slides>
+
+
+  <ion-list>
+    <ion-item button *ngFor = "let item of (results | async)" [routerLink]= "['/', 'content', item.imdbID ]">
+      <ion-avatar slot="start">
+        <img [src]="item.Poster" *ngIf = "item.Poster != 'N/A'">
+      </ion-avatar>
+
+      <ion-label text-wrap>
+        <h3>{{ item.Title }}</h3>
+        {{item.Year}}
+      </ion-label>
+
+
+    </ion-item>
+  </ion-list>
+
+
+
+ 
+
+<!--
+  <ion-grid class="poster">
+    <ion-row >
+      <ion-col col = 6 button *ngFor = "let item of (results | async)" [routerLink]= "['/', 'content', item.imdbID ]">
+        <ion-card>
+          <img [src]="item.Poster" *ngIf = "item.Poster != 'N/A'">
+          <ion-label text-wrap>
+        <h3>{{ item.Title }}</h3>
+        {{item.Year}}
+      </ion-label>
+        </ion-card>
+      </ion-col>
+
+      
+    </ion-row>
+  </ion-grid>
+
+-->
+
+ <!--
+
+
+  <ion-grid class="poster"  *ngIf = "segment == 'commingsoon' ">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://www.joblo.com/assets/images/joblo/posters/2019/10/jungle-cruise-poster.jpg">
+          <h3>Jungle Cursed</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://m.media-amazon.com/images/M/MV5BMzFiODE0ZDUtN2IxNC00OTI5LTg4OWItZTE2MjU4ZTk2NjM5XkEyXkFqcGdeQXVyNDYzODU1ODM@._V1_.jpg">
+          <h3>Black Widow</h3>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://1.bp.blogspot.com/-gnhtghpo-ls/XwrBAcopQSI/AAAAAAAAaC4/y4OaU9G1s3I7-y0vjVedR1se6yO2AIUYwCLcBGAsYHQ/s640/Dostana-bhojpuri-Movie-Poster.jpg">
+          <h3>Dostana</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://i.pinimg.com/originals/b1/21/59/b12159e3f7e7ff02be1a7f86fc01fc8b.png">
+          <h3>Fantastic Beast 3</h3>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid class="poster"  *ngIf = "segment == 'webseries' ">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://i.pinimg.com/originals/67/5e/bc/675ebc2fd210a8bd5362928a51514960.jpg">
+          <h3>Dark</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://1.bp.blogspot.com/-duXXNFNKjwU/X5QAdR-lCwI/AAAAAAAAvw4/Zj9479PZzR86LyvcJZ87qorO_Rl64_boACNcBGAsYHQ/s900/Mirzapur-2-Poster-1.jpg">
+          <h3>Mirzapur</h3>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://i.pinimg.com/originals/70/4d/c6/704dc6bb0fab01493856469a75c6c232.jpg">
+          <h3>Cursed</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://m.media-amazon.com/images/I/81u7YEO-iJL._AC_SL1500_.jpg">
+          <h3>The Witcher</h3>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid class="poster"  *ngIf = "segment == 'tvshows' ">
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://i.pinimg.com/originals/75/88/90/75889018cf6faa54d2c378615a2f102e.jpg">
+          <h3>Firends</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://i.pinimg.com/originals/42/59/82/425982ee791c9b7a9f10fa5dada841d9.jpg">
+          <h3>The Exorcist</h3>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://i.pinimg.com/474x/5a/06/f9/5a06f97aca531e63acabb8a340f225c9--tv-%C5%9Fovlar%C4%B1-robot-series.jpg">
+          <h3>Mr. Robot</h3>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-card>
+          <img src="https://preview.redd.it/b1b3ov7bhxl51.jpg?auto=webp&s=3bf1008d22f4cf329f986df9a4340aff8302257c">
+          <h3>Star Trek</h3>
+        </ion-card>
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+  -->
+
+
+
+
+</ion-content>
+  
+
+
+

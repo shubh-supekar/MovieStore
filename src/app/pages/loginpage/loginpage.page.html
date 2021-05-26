@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="name">MovieStore</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-content>
+    <ion-text>
+      <h5>SIGN IN</h5>
+    </ion-text>
+    
+    <div class="form">
+      <ion-item>
+        <ion-icon name= "mail"></ion-icon>
+        <ion-input type = "text" placeholder= "Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name= "lock-closed"></ion-icon>
+        <ion-input type= "Password" placeholder="Password"></ion-input>
+      </ion-item>
+  
+    </div>
+    <div class="btn-one">
+      <ion-button expand= "block" routerLink="/home" (click) = "login()" >Sign In</ion-button>
+    </div>
+
+    <div class="btn-two">
+      <ion-button expand= "block" routerLink="/register">Sign Up</ion-button>
+    </div>
+  
+    <div class="forgetPass">
+      <p class="login">Forget Password?<a (click)= "forget()"><br>Click Here</a></p>
+    </div>
+  </ion-content>
+  
+
+</ion-content>

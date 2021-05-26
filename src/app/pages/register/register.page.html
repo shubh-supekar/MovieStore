@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="name">MovieStore</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-text>
+    <h5>SIGN UP</h5>
+  </ion-text>
+
+  
+  <div class="form">
+    <ion-item>
+      <ion-icon name= "person"></ion-icon>
+      <ion-input type = "text" placeholder="Username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name= "mail"></ion-icon>
+      <ion-input type = "text" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name= "lock-closed"></ion-icon>
+      <ion-input type= "Password" placeholder="Password"></ion-input>
+    </ion-item>
+  </div>
+  <div class="paragraph">
+    <p>By Continuing app you agree to our<br> Terms & Conditions </p>
+  </div>
+  <div class="btn-one">
+    <ion-button (click) = "presentToast()" expand= "block" routerLink="/loginpage">Continue</ion-button>
+  </div>
+</ion-content>
+

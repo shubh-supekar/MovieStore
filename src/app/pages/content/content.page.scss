@@ -1,0 +1,52 @@
+.name{
+    font-size: 15px;
+    font-weight: bold;
+    color: #797777;
+    //margin-left: px;
+
+}
+
+
+.poster-col {
+    height: 300px;
+
+    img {
+      border-radius: 40px;
+      margin: auto;
+      
+    }
+  }
+
+.title{
+    text-align: center;
+}
+
+ion-card-content{
+    img{
+        
+        border-radius: 40px;
+    }
+}
+
+.downloadBtn{
+    --background: #969696;
+    display: flex;
+    justify-content: center;
+}
+
+.rate {
+    font-size: 14px;
+    padding-top: 4px;
+  
+    ion-icon {
+      color: gold;
+    }
+  }
+
+  .star{
+    color: gold;
+  }
+
+  h1{
+      font-size: 15px;
+  }
